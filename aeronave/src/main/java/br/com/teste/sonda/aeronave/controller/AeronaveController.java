@@ -3,6 +3,8 @@ package br.com.teste.sonda.aeronave.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.teste.sonda.aeronave.dto.AeronaveDTO;
 import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioDecadaDTO;
 import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioMarcaDTO;
 import br.com.teste.sonda.aeronave.entity.Aeronave;
@@ -43,8 +46,8 @@ public class AeronaveController {
 
 	// Adiciona uma nova aeronave
 	@PostMapping
-	public ResponseEntity<Aeronave> insert(@RequestBody Aeronave aeronave) {
-		aeronave = aeronaveService.insert(aeronave);
+	public ResponseEntity<Aeronave> insert(@Valid @RequestBody AeronaveDTO aeronaveDTO) {
+		Aeronave aeronave = aeronaveService.insert(aeronaveDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(aeronave.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(aeronave);
@@ -52,8 +55,8 @@ public class AeronaveController {
 
 	// Atualiza os dados de uma aeronave
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> update(@RequestBody Aeronave aeronave, @PathVariable Long id) {
-		aeronave = aeronaveService.update(aeronave, id);
+	public ResponseEntity<Void> update(@Valid @RequestBody AeronaveDTO aeronaveDTO, @PathVariable Long id) {
+		aeronaveService.update(aeronaveDTO, id);
 		return ResponseEntity.noContent().build();
 	}
 
