@@ -3,6 +3,7 @@ package br.com.teste.sonda.aeronave.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,14 @@ public class AeronaveService {
 		aeronave.setId(null);
 		aeronave.setCreated(LocalDateTime.now());
 		return aeronaveRepository.save(aeronave);
+	}
+	
+	public Aeronave update(Aeronave aeronave, Long id) {
+		Aeronave newAeronave = find(id);
+		aeronave.setCreated(newAeronave.getCreated());
+		BeanUtils.copyProperties(aeronave, newAeronave);
+		newAeronave.setId(id);
+		newAeronave.setUpdated(LocalDateTime.now());
+		return aeronaveRepository.save(newAeronave);
 	}
 }
