@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioDecadaDTO;
 import br.com.teste.sonda.aeronave.entity.Aeronave;
 import br.com.teste.sonda.aeronave.service.AeronaveService;
 
@@ -61,5 +62,12 @@ public class AeronaveController {
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		aeronaveService.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	//Somatório de aeronaves por décadas
+	@GetMapping("/decadas")
+	public ResponseEntity<List<AeronaveSomatorioDecadaDTO>> countAeronave(){
+		List<AeronaveSomatorioDecadaDTO> aeronavesDTO = aeronaveService.countAeronave();
+		return ResponseEntity.ok().body(aeronavesDTO);
 	}
 }

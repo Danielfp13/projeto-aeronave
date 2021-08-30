@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioDecadaDTO;
 import br.com.teste.sonda.aeronave.entity.Aeronave;
 import br.com.teste.sonda.aeronave.repository.AeronaveRepository;
 
@@ -49,4 +49,10 @@ public class AeronaveService {
 		find(id);
 		aeronaveRepository.deleteById(id);
 	}
+	
+	//Somatório de aeronaves por década
+	public List<AeronaveSomatorioDecadaDTO> countAeronave() {
+		return aeronaveRepository.somatorioAeronave();
+	}
+	
 }
