@@ -1,13 +1,17 @@
 package br.com.teste.sonda.aeronave.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.teste.sonda.aeronave.entity.Aeronave;
 import br.com.teste.sonda.aeronave.service.AeronaveService;
@@ -15,21 +19,30 @@ import br.com.teste.sonda.aeronave.service.AeronaveService;
 @RestController
 @RequestMapping("/aeronaves")
 public class AeronaveController {
-	
+
 	@Autowired
 	private AeronaveService aeronaveService;
-	
-	//Retorna todos as aeronaves 
+
+	// Retorna todos as aeronaves
 	@GetMapping()
-	public ResponseEntity<List<Aeronave>> findAll(){
+	public ResponseEntity<List<Aeronave>> findAll() {
 		List<Aeronave> aeronaves = aeronaveService.findAll();
 		return ResponseEntity.ok().body(aeronaves);
 	}
-	
-	//GET /aeronaves/{id} 
+
+	// Retorna uma aeronave por id
 	@GetMapping("/{id}")
-	public ResponseEntity<Aeronave> find(@PathVariable Long id){
+	public ResponseEntity<Aeronave> find(@PathVariable Long id) {
 		Aeronave aeronave = aeronaveService.find(id);
 		return ResponseEntity.ok().body(aeronave);
+	}
+
+	// Adiciona uma nova aeronave
+	@PostMapping
+	public ResponseEntity<Aeronave> insert(@RequestBody Aeronave aeronave) {
+		aeronave = aeronaveService.insert(aeronave);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(aeronave.getId())
+				.toUri();
+		return ResponseEntity.created(uri).body(aeronave);
 	}
 }
