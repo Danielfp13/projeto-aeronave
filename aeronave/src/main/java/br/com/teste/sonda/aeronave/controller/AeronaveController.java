@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioDecadaDTO;
+import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioMarcaDTO;
 import br.com.teste.sonda.aeronave.entity.Aeronave;
 import br.com.teste.sonda.aeronave.service.AeronaveService;
 
@@ -48,26 +49,32 @@ public class AeronaveController {
 				.toUri();
 		return ResponseEntity.created(uri).body(aeronave);
 	}
-	
-	//Atualiza os dados de uma aeronave 
+
+	// Atualiza os dados de uma aeronave
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> update (@RequestBody Aeronave aeronave, @PathVariable Long id){
+	public ResponseEntity<Void> update(@RequestBody Aeronave aeronave, @PathVariable Long id) {
 		aeronave = aeronaveService.update(aeronave, id);
 		return ResponseEntity.noContent().build();
 	}
-	
 
-	//Excluir a aeronave
+	// Excluir a aeronave
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		aeronaveService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
-	//Somatório de aeronaves por décadas
+
+	// Somatório de aeronaves por décadas
 	@GetMapping("/decadas")
-	public ResponseEntity<List<AeronaveSomatorioDecadaDTO>> countAeronave(){
+	public ResponseEntity<List<AeronaveSomatorioDecadaDTO>> countAeronave() {
 		List<AeronaveSomatorioDecadaDTO> aeronavesDTO = aeronaveService.countAeronave();
+		return ResponseEntity.ok().body(aeronavesDTO);
+	}
+
+	// Somatório de aeronaves por marca
+	@GetMapping("/marcas")
+	public ResponseEntity<List<AeronaveSomatorioMarcaDTO>> countMarca() {
+		List<AeronaveSomatorioMarcaDTO> aeronavesDTO = aeronaveService.countMarca();
 		return ResponseEntity.ok().body(aeronavesDTO);
 	}
 }

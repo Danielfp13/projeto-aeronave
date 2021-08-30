@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioDecadaDTO;
+import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioMarcaDTO;
 import br.com.teste.sonda.aeronave.entity.Aeronave;
 import br.com.teste.sonda.aeronave.repository.AeronaveRepository;
 
@@ -17,24 +18,24 @@ public class AeronaveService {
 	@Autowired
 	private AeronaveRepository aeronaveRepository;
 
-	//Buscar todas aeronaves
+	// Buscar todas aeronaves
 	public List<Aeronave> findAll() {
 		return aeronaveRepository.findAll();
 	}
 
-	//Buscar aeronave por id
+	// Buscar aeronave por id
 	public Aeronave find(Long id) {
 		return aeronaveRepository.findById(id).get();
 	}
 
-	//inserir aeronave
+	// inserir aeronave
 	public Aeronave insert(Aeronave aeronave) {
 		aeronave.setId(null);
 		aeronave.setCreated(LocalDateTime.now());
 		return aeronaveRepository.save(aeronave);
 	}
-	
-	//Alterar aeronave
+
+	// Alterar aeronave
 	public Aeronave update(Aeronave aeronave, Long id) {
 		Aeronave newAeronave = find(id);
 		aeronave.setCreated(newAeronave.getCreated());
@@ -43,16 +44,21 @@ public class AeronaveService {
 		newAeronave.setUpdated(LocalDateTime.now());
 		return aeronaveRepository.save(newAeronave);
 	}
-	
-	//Excluir aeronve
+
+	// Excluir aeronve
 	public void delete(Long id) {
 		find(id);
 		aeronaveRepository.deleteById(id);
 	}
-	
-	//Somatório de aeronaves por década
+
+	// Somatório de aeronaves por década
 	public List<AeronaveSomatorioDecadaDTO> countAeronave() {
 		return aeronaveRepository.somatorioAeronave();
 	}
-	
+
+	// Somatório de aeronaves por marca
+	public List<AeronaveSomatorioMarcaDTO> countMarca() {
+		return aeronaveRepository.somatorioMarca();
+	}
+
 }
