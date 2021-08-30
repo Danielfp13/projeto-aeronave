@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +26,10 @@ public class AeronaveController {
 		return ResponseEntity.ok().body(aeronaves);
 	}
 	
-	
+	//GET /aeronaves/{id} 
+	@GetMapping("/{id}")
+	public ResponseEntity<Aeronave> find(@PathVariable Long id){
+		Aeronave aeronave = aeronaveService.find(id);
+		return ResponseEntity.ok().body(aeronave);
+	}
 }

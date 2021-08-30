@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.teste.sonda.aeronave.entity.Aeronave;
 import br.com.teste.sonda.aeronave.repository.AeronaveRepository;
+import br.com.teste.sonda.aeronave.service.exception.ObjectNotFoundException;
 
 @Service
 public class AeronaveService {
@@ -16,5 +17,9 @@ public class AeronaveService {
 	
 	public List<Aeronave> findAll() {
 		return aeronaveRepository.findAll();
+	}
+	
+	public Aeronave find(Long id) {
+		return aeronaveRepository.findById(id).get();
 	}
 }
