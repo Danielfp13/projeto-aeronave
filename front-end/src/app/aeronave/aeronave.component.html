@@ -1,0 +1,87 @@
+<mat-toolbar> Aerovave</mat-toolbar>
+
+<mat-tab-group>
+   <mat-tab label="Todos">
+
+   </mat-tab>
+   <mat-tab label="Relatórios">
+      <h1>Aeronaves por por décadas:</h1>
+      <div *ngFor="let item of somatorioDecadas">
+         <p>Década de {{item.decada}}: {{item.quantidade}} aeronaves.</p>
+      </div> 
+   </mat-tab>
+
+   <mat-tab label="Novo"> 
+      
+      <mat-card class="half-width">
+         <mat-card-title>
+             <mat-icon><span class="material-icons">
+               airplanemode_active
+               </span></mat-icon>
+             Nova Aeronave
+         </mat-card-title>
+      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+         <mat-form-field class="half-width">
+            <mat-label>Nome da Aeronave</mat-label>
+            <input matInput required  placeholder="Nome da Aerovane" name="nome" formControlName="nome"/>
+         </mat-form-field>
+         <div *ngIf="formulario.controls.nome.errors && formulario.controls.nome.touched" class="erro">
+            <div *ngIf="formulario.controls.nome.getError('required')">
+               Campo nome é obrigatório.
+            </div>
+      </div>
+
+         <mat-form-field class="half-width">
+            <mat-label>Marca da Aerovave</mat-label>
+            <select matNativeControl required name="marca" formControlName="marca">
+            <option value="Airbus">Airbus</option>
+            <option value="Boeing">Boeing</option>
+            <option value="Bombardier">Bombardier</option>
+            <option value="Cessna">Cessna</option>
+            <option value="Dash">Dash</option>
+            <option value="Embraer">Embraer</option>
+            <option value="Fokker">Fokker</option>
+            
+            </select>
+         </mat-form-field>
+
+         <div *ngIf="formulario.controls.marca.errors && formulario.controls.marca.touched" class="erro">
+            <div *ngIf="formulario.controls.marca.getError('required')">
+               Campo marca é obrigatório.
+            </div>
+      </div>
+
+         <mat-form-field class="medium-width">
+            <mat-label>Ano da Aeronave</mat-label>
+            <input matInput type="number" required  placeholder="Ano da Aerovane" name="ano" formControlName="ano"/>
+         </mat-form-field>
+
+         <div *ngIf="formulario.controls.ano.errors && formulario.controls.ano.touched" class="erro2">
+            <div *ngIf="formulario.controls.ano.getError('required')">
+               Campo ano é obrigatório.
+            </div>
+      </div>
+
+         <mat-form-field class="medium2-width">
+            <mat-label>Vendido</mat-label>
+            <select matNativeControl required name="vendido" formControlName="vendido">
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+            </select>
+         </mat-form-field>
+         <div *ngIf="formulario.controls.vendido.errors && formulario.controls.vendido.touched" class="erro3">
+            <div *ngIf="formulario.controls.vendido.getError('required')">
+               Campo vendido é obrigatório.
+            </div>
+      </div>
+
+         <mat-form-field class="half-width">
+            <mat-label>Descrição da Aeronave</mat-label>
+            <input type="text"  matInput placeholder="Descrição da Aerovane" name="descricao" formControlName="descricao"/>
+         </mat-form-field>
+
+         <button [disabled]="!formulario.valid" mat-raised-button color="primary" class="half-width">Adicionar</button>
+      </form>
+      </mat-card>
+   </mat-tab>
+</mat-tab-group>

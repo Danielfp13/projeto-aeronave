@@ -1,0 +1,45 @@
+.full-width {
+   width: 100%;
+}
+
+.half-width {
+   width: 50%;
+   margin-left: 25%;
+   margin-top: 1%;
+}
+.medium-width {
+   width: 25%;
+   margin-left: 25%;
+   margin-top: 1%;
+}
+.medium2-width {
+   width: 23%;
+   margin-left: 52%;
+   margin-top: 1%;
+}
+
+.table-width {
+   width: 70%;
+   margin-left: 13%;
+}
+
+.erro {
+   width: 50%;
+   margin-left: 25%;
+   margin-top: 1%;
+   color: red;
+}
+
+.erro2 {
+   width: 25%;
+   margin-left: 25%;
+   margin-top: 1%;
+   color: red;
+}
+
+.erro3 {
+   width: 25%;
+   margin-left: 50%;
+   margin-top: 1%;
+   color: red;
+}
