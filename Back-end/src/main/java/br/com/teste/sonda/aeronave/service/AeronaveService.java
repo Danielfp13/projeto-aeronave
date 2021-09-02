@@ -6,11 +6,15 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.teste.sonda.aeronave.dto.AeronaveDTO;
 import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioDecadaDTO;
 import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioMarcaDTO;
+import br.com.teste.sonda.aeronave.dto.AeronaveSomatorioSemanaDTO;
 import br.com.teste.sonda.aeronave.entity.Aeronave;
 import br.com.teste.sonda.aeronave.repository.AeronaveRepository;
 import br.com.teste.sonda.aeronave.service.exception.ObjectNotFoundException;
@@ -67,6 +71,24 @@ public class AeronaveService {
 	// Somatório de aeronaves por marca
 	public List<AeronaveSomatorioMarcaDTO> countMarca() {
 		return aeronaveRepository.somatorioMarca();
+	}
+	
+	//pagina de aeronaves
+	public Page<Aeronave> findPage(Integer page, Integer linePerPage, String direction, String orderBy,String id, String marca) {
+		PageRequest pageRequest = PageRequest.of(page, linePerPage, Direction.valueOf(direction),orderBy);
+		
+		if(id.isEmpty() && marca.isEmpty()) {
+			return aeronaveRepository.findAll(pageRequest);
+		}else {
+			return aeronaveRepository.findByIdOrMarcaIgnoreCase(pageRequest, id, marca);
+			
+		}
+		
+	}
+	
+	// Somatorio de aeronaves cadastradas na ultima semana
+	public List<AeronaveSomatorioSemanaDTO> countSemana() {
+		return aeronaveRepository.somatorioSemana(LocalDateTime.now().minusWeeks(1));
 	}
 
 }

@@ -1,0 +1,23 @@
+.table-width {
+   width: 70%;
+   margin-left: 13%;
+}
+
+.botao{
+   margin-left: 3px;
+}
+
+.search{
+   width: 50%;
+   margin-top: 30px;
+}
+
+.botaoCadastro{
+   margin-left:40%;
+   width: 20%;
+}
+
+.botaoBusca{
+   margin-left:80%;
+   width: 20%;
+}

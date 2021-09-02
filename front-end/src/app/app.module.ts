@@ -17,15 +17,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AeronaveComponent } from './aeronave/aeronave.component';
-import { AeronaveService } from './aeronave.service';
-import {MatInputModule} from '@angular/material/input';
+import { AeronaveService } from './service/aeronave.service'
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { AeronaveListaComponent } from './aeronave-lista/aeronave-lista.component';
+import { DialogExcluirComponent } from './dialog-excluir/dialog-excluir.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AeronaveComponent
+    AeronaveComponent,
+    AeronaveListaComponent,
+    DialogExcluirComponent
   ],
+  entryComponents:[DialogExcluirComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,10 +50,14 @@ import {MatInputModule} from '@angular/material/input';
     MatTableModule,
     MatIconModule,
     MatCardModule,
-
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatGridListModule,
+    FlexLayoutModule,
 
     BrowserAnimationsModule
-   
+    
   ],
   providers: [AeronaveService],
   bootstrap: [AppComponent]
