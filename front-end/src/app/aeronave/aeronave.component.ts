@@ -93,7 +93,7 @@ export class AeronaveComponent implements OnInit {
     this.formulario = this.fb.group({
       nome: ['', Validators.required],
       marca: ['', Validators.required],
-      ano: ['', [Validators.required, Validators.minLength(0), Validators.maxLength(2100)]],
+      ano: ['', [Validators.required, Validators.max(9999), Validators.min(0)]],
       vendido: ['', Validators.required],
       descricao: ['']
     })

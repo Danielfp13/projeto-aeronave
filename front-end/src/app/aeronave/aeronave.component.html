@@ -52,8 +52,11 @@
                <div *ngIf="formulario.controls.ano.getError('required')">
                   Campo ano é obrigatório.
                </div>
-               <div *ngIf="formulario.controls.ano.getError('minLength')">
+               <div *ngIf="formulario.controls.ano.getError('min')">
                   Campo ano deve ser positivo.
+               </div>
+               <div *ngIf="formulario.controls.ano.getError('max')">
+                  Campo ano deve ter 4 dígitos.
                </div>
             </div>
 
