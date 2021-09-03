@@ -4,9 +4,9 @@ Projeto Aeronave foi um teste proposto pela Sonda IT, ele consiste em um crud de
 ## Layout web
 ![Web 1](https://github.com/Danielfp13/projeto-aeronave/blob/main/assents/imagens/cadastro.jpg)
 
-![Web 1](https://github.com/Danielfp13/projeto-aeronave/blob/main/assents/imagens/cadastro.jpg)
+![Web 2](https://github.com/Danielfp13/projeto-aeronave/blob/main/assents/imagens/relatorio.jpg)
 
-![Web 1](https://github.com/Danielfp13/projeto-aeronave/blob/main/assents/imagens/cadastro.jpg)
+![Web 2](https://github.com/Danielfp13/projeto-aeronave/blob/main/assents/imagens/listagem.jpg)
 
 ## Modelo conceitual
 ![Modelo Conceitual](https://github.com/Danielfp13/projeto-aeronave/blob/main/assents/imagens/classe.jpg)
@@ -16,6 +16,7 @@ Projeto Aeronave foi um teste proposto pela Sonda IT, ele consiste em um crud de
 
 # Tecnologias utilizadas
 ## Back end
+
 - Java 11
 - Spring Boot 2.4.10
 - Spring Data JPA
@@ -24,33 +25,42 @@ Projeto Aeronave foi um teste proposto pela Sonda IT, ele consiste em um crud de
 - Swagger
 - Maven
 ## Front end
+
 - HTML / CSS / TypeScript
 - Angular 11
 - Angular Material
 ## Banco de dados
-- Postgresql
+
+- Postgresql 13
 
 # Como executar o projeto
-## Criar banco de dados aerovane 
-    criar tabela aeronave
-    https://github.com/Danielfp13/projeto-aeronave/tree/main/Banco-Dados
+
+## Criar banco de dados aeronave
+
+ criar tabela aeronave
+ https://github.com/Danielfp13/projeto-aeronave/tree/main/Banco-Dados
+ 
 ## Back end
+
 Pré-requisitos: Java 11
 
 ```bash
 # clonar repositório
  git clone https://github.com/Danielfp13/projeto-aeronave
 ```
-## Abrir back-end na ide
+## Abrir back-end na IDE
+
  -Abrir STS (Spring Tool Suite) ou outra IDE
  vá em  file -> import -> existing maven projects >next
  -Escolha a pasta back-end-> finish
+ 
 ## Configurar banco de dados
-na pasta src/main/resources
+
+#na pasta src/main/resources
 modifique o arquivo application-dev.properties com as configurações do seu banco de dados
-spring.datasource.url=jdbc:postgresql://localhost:5432/aeronave
-spring.datasource.username=postgres
-spring.datasource.password=123
+-spring.datasource.url=jdbc:postgresql://localhost:5432/aeronave
+-spring.datasource.username=postgres
+-spring.datasource.password=123
 
 # Executar o projeto
 Clique com o botão direito do mouse no projeto-> Run as -> Spring Boot App.
